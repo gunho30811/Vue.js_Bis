@@ -67,6 +67,7 @@ export default {
       if (this.searchkeyword === '') {
         alert('키워드가 없습니다.')
       } else {
+        console.log('else로 들어오고')
         axios({
           url: 'http://localhost:3000/users/y',
           method: 'POST',
@@ -77,8 +78,8 @@ export default {
         }).then((res) => {
           console.log('데이터 들어왔니?')
           this.change_tbl = res.data
-          this.guard_down = !this.guard_down
-          this.guard_up = !this.guard_up
+          this.guard_down = false
+          this.guard_up = true
         }).catch(err => {
           alert(err)
         })

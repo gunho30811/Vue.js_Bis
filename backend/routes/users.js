@@ -27,9 +27,17 @@ router.get('/', function(req, res) {
 });
 
 /* Post users listing */
-// router.post('/y', function(req, res){
-//   if(req.body.option == )
-
-// })
+router.post('/y', function(req, res){
+  console.log(req.body.options);
+  console.log(req.body.searchkeyword);
+  if(req.body.options == 'Name'){
+    connection.query("SELECT*FROM bistellist WHERE employee like ? ",'%'+req.body.searchkeyword+'%', function(err,rows){
+      if(err) throw err;
+      res.send(rows);
+    })
+  }else {
+    console.log("데이터보내기실패");
+  };
+});
 
 module.exports = router;
