@@ -40,7 +40,7 @@
             <th col-index = 5>Team</th>
             <th col-index = 6>Email</th>
             <tr v-for="(tbl) in change_tbl" :key="tbl.Num">
-              <td><input v-show="guard" class="search-txt" type="text" v-model="tbl.Num"/>{{tbl.Num}}</td>
+              <td>{{tbl.Num}}</td>
               <td><input v-show="guard" class="search-txt" type="text" v-model="tbl.employee"/>{{tbl.employee}}</td>
               <td><input v-show="guard" class="search-txt" type="text" v-model="tbl.employeeenglish"/>{{tbl.employeeenglish}}</td>
               <td><input v-show="guard" class="search-txt" type="text" v-model="tbl.department"/>{{tbl.department}}</td>
@@ -82,6 +82,7 @@ export default {
   methods: {
     search () {
       console.log(this.searchkeyword)
+      this.guard = false
       if (this.searchkeyword === '') {
         alert('키워드가 없습니다.')
       } else {
@@ -96,12 +97,11 @@ export default {
         }).then((res) => {
           console.log('데이터 들어왔니?')
           this.change_tbl = res.data
-          this.guard_down = false
-          this.guard_up = true
         }).catch(err => {
           alert(err)
         })
-      }
+      } this.guard_down = false
+      this.guard_up = true
     },
     edit () {
       this.search()
@@ -111,7 +111,26 @@ export default {
 
     },
     Update () {
-
+      this.emp_tbl = this.change_tbl
+      if (this.tbl === '') {
+        alert('칸이 비워져 있습니다.')
+      } else {
+        axios({
+          url: 'http://localhost:3000/users/u',
+          method: 'POST',
+          data: {
+            updating: this.emp_tbl
+          }
+        },
+        console.log('업데이트 데이터는 보내졌다.')
+        ).then((res) => {
+          console.log('업데이트 데이터가 들어왔다.')
+          this.emp_tbl = res.data
+          alert('업데이트가 됬습니다.') // 원래 창about으로 돌아가는 기능이 있어야함
+        }).catch(err => {
+          alert(err)
+        })
+      }
     },
     add () {
 

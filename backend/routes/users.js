@@ -46,9 +46,26 @@ router.post('/y', function(req, res){
       res.send(rows);
     })
   }
-  else {
+  else { 
     console.log("데이터보내기실패");
   };
 });
+
+router.post('/u', function(req, res){
+  console.log('백엔드에서 동작하나?');
+  var updatedlist=req.body.updating;
+  console.log(updatedlist);
+  var key=updatedlist.map(row=>row.Num);
+  var employee=updatedlist.map(row=>row.employee);
+  var employeeenglish=updatedlist.map(row=>row.employeeenglish);
+  var department=updatedlist.map(row=>row.department);
+  var team=updatedlist.map(row=>row.team);
+  var email=updatedlist.map(row=>row.email);
+  connection.query("UPDATE bistellist SET employee=?,employeeenglish=?,department=?,team=?,email=? WHERE Num=?",[employee,employeeenglish,department,team,email,key], function(err,rows){
+    if(err) throw err;
+    res.send(rows);
+  });
+});
+
 
 module.exports = router;
