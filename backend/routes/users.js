@@ -35,7 +35,18 @@ router.post('/y', function(req, res){
       if(err) throw err;
       res.send(rows);
     })
-  }else {
+  }else if(req.body.options == 'Dep'){
+    connection.query("SELECT*FROM bistellist WHERE department like ? ",'%'+req.body.searchkeyword+'%', function(err,rows){
+      if(err) throw err;
+      res.send(rows);
+    })
+  }else if(req.body.options == 'Team'){
+    connection.query("SELECT*FROM bistellist WHERE team like ? ",'%'+req.body.searchkeyword+'%', function(err,rows){
+      if(err) throw err;
+      res.send(rows);
+    })
+  }
+  else {
     console.log("데이터보내기실패");
   };
 });

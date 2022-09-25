@@ -6,7 +6,10 @@
         </select>
         <input class="search-txt" type="text" placeholder="검색어 입력" v-model="searchkeyword"/>
         <button class="seatch-btn" type="submit" @click="search">검색</button>
+        <button class="seatch-btn" type="submit" @click="edit">수정</button>
+        <button class="seatch-btn" type="submit" @click="add">추가</button>
     </div>
+
     <div class="table_wrap" v-show="guard_down">
       <table class="list">
         <thead>
@@ -30,23 +33,38 @@
     <div class="table_wrap" v-show="guard_up">
       <table class="list">
         <thead>
-            <th col-index = 1>Num1</th>
+            <th col-index = 1>Num</th>
             <th col-index = 2>Name</th>
             <th col-index = 3>Eng_Name</th>
             <th col-index = 4>Dep</th>
             <th col-index = 5>Team</th>
             <th col-index = 6>Email</th>
             <tr v-for="(tbl) in change_tbl" :key="tbl.Num">
-              <td>{{tbl.Num}}</td>
-              <td>{{tbl.employee}}</td>
-              <td>{{tbl.employeeenglish}}</td>
-              <td>{{tbl.department}}</td>
-              <td>{{tbl.team}}</td>
-              <td>{{tbl.email}}</td>
+              <td><input v-show="guard" class="search-txt" type="text" v-model="tbl.Num"/>{{tbl.Num}}</td>
+              <td><input v-show="guard" class="search-txt" type="text" v-model="tbl.employee"/>{{tbl.employee}}</td>
+              <td><input v-show="guard" class="search-txt" type="text" v-model="tbl.employeeenglish"/>{{tbl.employeeenglish}}</td>
+              <td><input v-show="guard" class="search-txt" type="text" v-model="tbl.department"/>{{tbl.department}}</td>
+              <td><input v-show="guard" class="search-txt" type="text" v-model="tbl.team"/>{{tbl.team}}</td>
+              <td><input v-show="guard" class="search-txt" type="text" v-model="tbl.email"/>{{tbl.email}}</td>
+              <button v-show="guard" class="seatch-btn" type="submit" @click="Delete">삭제</button>
+              <button v-show="guard" class="seatch-btn" type="submit" @click="Update">업데이트</button>
             </tr>
         </thead>
       </table>
     </div>
+
+    <!-- <div class="table_wrap" v-show="guard">
+      <table class="list">
+        <tr v-for="(tbl) in change_tbl" :key="tbl.Num">
+            <td col-index = 1>{{tbl.Num}}</td>
+            <td col-index = 2><input class="search-txt" type="text" placeholder="검색어 입력" v-model="Name"/></td>
+            <td col-index = 3><input class="search-txt" type="text" placeholder="검색어 입력" v-model="searchkeyword"/></td>
+            <td col-index = 4><input class="search-txt" type="text" placeholder="검색어 입력" v-model="searchkeyword"/></td>
+            <td col-index = 5><input class="search-txt" type="text" placeholder="검색어 입력" v-model="searchkeyword"/></td>
+            <td col-index = 6><input class="search-txt" type="text" placeholder="검색어 입력" v-model="searchkeyword"/></td>
+        </tr>
+      </table>
+    </div> -->
   </header>
 </template>
 
@@ -84,6 +102,19 @@ export default {
           alert(err)
         })
       }
+    },
+    edit () {
+      this.search()
+      this.guard = true
+    },
+    Delete () {
+
+    },
+    Update () {
+
+    },
+    add () {
+
     }
   },
   data () {
@@ -94,6 +125,7 @@ export default {
       change_tbl: [],
       guard_down: true,
       guard_up: false,
+      guard: false,
       searchkeyword: '',
       options: [
         { option: 'Name' },
@@ -108,7 +140,8 @@ export default {
 <style scoped>
 
 .list{
-  width: 100%;
+  width: 85%;
+  margin: auto;
   border: 1px solid #444444;
   background-color: white;
 }
@@ -123,11 +156,15 @@ th{
 }
 
 .table_wrap{
+  width: 100%;
   margin-top:10vh;
   overflow-y: scroll;
-  overflow-x: scroll;
   height: fit-content;
   max-height: 70vh;
 }
 
+.search-txt{
+  padding:0;
+  width: fit-content;
+}
 </style>
