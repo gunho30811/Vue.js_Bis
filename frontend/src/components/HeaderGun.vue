@@ -53,6 +53,28 @@
       </table>
     </div>
 
+    <div class="table_wrap" v-show="guard_add">
+      <table class="list">
+        <thead>
+            <th col-index = 1>Num</th>
+            <th col-index = 2>Name</th>
+            <th col-index = 3>Eng_Name</th>
+            <th col-index = 4>Dep</th>
+            <th col-index = 5>Team</th>
+            <th col-index = 6>Email</th>
+            <tr>
+              <td><input class="search-txt" type="text"/></td>
+              <td><input class="search-txt" type="text"/></td>
+              <td><input class="search-txt" type="text"/></td>
+              <td><input class="search-txt" type="text"/></td>
+              <td><input class="search-txt" type="text"/></td>
+              <td><input class="search-txt" type="text"/></td>
+              <button class="seatch-btn" type="submit" @click="add_emp">확인</button>
+            </tr>
+        </thead>
+      </table>
+    </div>
+
     <!-- <div class="table_wrap" v-show="guard">
       <table class="list">
         <tr v-for="(tbl) in change_tbl" :key="tbl.Num">
@@ -96,12 +118,13 @@ export default {
           }
         }).then((res) => {
           console.log('데이터 들어왔니?')
+          this.guard_down = false
+          this.guard_up = true
           this.change_tbl = res.data
         }).catch(err => {
           alert(err)
         })
-      } this.guard_down = false
-      this.guard_up = true
+      }
     },
     edit () {
       this.search()
@@ -133,7 +156,8 @@ export default {
       }
     },
     add () {
-
+      this.guard_add = true
+      this.guard_down = false
     }
   },
   data () {
@@ -142,9 +166,11 @@ export default {
         { Num: '', employee: '', employeeenglish: '', department: '', team: '', email: '' }
       ],
       change_tbl: [],
+      add_tbl: [],
       guard_down: true,
       guard_up: false,
       guard: false,
+      guard_add: false,
       searchkeyword: '',
       options: [
         { option: 'Name' },
