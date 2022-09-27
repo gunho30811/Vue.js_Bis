@@ -62,13 +62,13 @@
             <th col-index = 4>Dep</th>
             <th col-index = 5>Team</th>
             <th col-index = 6>Email</th>
-            <tr>
-              <td><input class="search-txt" type="text"/></td>
-              <td><input class="search-txt" type="text"/></td>
-              <td><input class="search-txt" type="text"/></td>
-              <td><input class="search-txt" type="text"/></td>
-              <td><input class="search-txt" type="text"/></td>
-              <td><input class="search-txt" type="text"/></td>
+            <tr id="tr_add" >
+              <td><input v-model="add_Num" class="search-txt" type="text"/></td>
+              <td><input v-model="add_Name" class="search-txt" type="text"/></td>
+              <td><input v-model="add_Eng" class="search-txt" type="text"/></td>
+              <td><input v-model="add_dep" class="search-txt" type="text"/></td>
+              <td><input v-model="add_team" class="search-txt" type="text"/></td>
+              <td><input v-model="add_email" class="search-txt" type="text"/></td>
               <button class="seatch-btn" type="submit" @click="add_emp">확인</button>
             </tr>
         </thead>
@@ -131,7 +131,15 @@ export default {
       this.guard = true
     },
     Delete () {
-
+      this.die = this.change_tbl.map(row => row.Num)
+      alert('삭제를 시작합니다.')
+      axios({
+        url: 'http://localhost:3000/users/del',
+        method: 'POST',
+        data: {
+          del_Name: this.die
+        }
+      })
     },
     Update () {
       this.emp_tbl = this.change_tbl
@@ -158,6 +166,26 @@ export default {
     add () {
       this.guard_add = true
       this.guard_down = false
+    },
+    add_emp () {
+      alert('네 정보를 넘겨보죠.')
+      axios({
+        url: 'http://localhost:3000/users/add',
+        method: 'POST',
+        el: '#tr_add',
+        data: {
+          add_Num: this.add_Num,
+          add_Name: this.add_Name,
+          add_dep: this.add_dep,
+          add_email: this.add_email,
+          add_team: this.add_team,
+          add_Eng: this.add_Eng
+        }
+      },
+      console.log('추가된 테이블 데이터를 보냈다.')
+      ).then((res) => {
+        console.log('추가된 테이블을 잘 받았따.')
+      })
     }
   },
   data () {
@@ -201,8 +229,9 @@ th{
 }
 
 .table_wrap{
-  width: 100%;
-  margin-top:10vh;
+  width: 80%;
+  margin:auto;
+  margin-top:1vh;
   overflow-y: scroll;
   height: fit-content;
   max-height: 70vh;

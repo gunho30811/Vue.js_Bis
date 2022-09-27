@@ -51,6 +51,7 @@ router.post('/y', function(req, res){
   };
 });
 
+/*post update */
 router.post('/u', function(req, res){
   console.log('백엔드에서 동작하나?');
   var updatedlist=req.body.updating;
@@ -61,9 +62,42 @@ router.post('/u', function(req, res){
   var department=updatedlist.map(row=>row.department);
   var team=updatedlist.map(row=>row.team);
   var email=updatedlist.map(row=>row.email);
+  console.log(email);
   connection.query("UPDATE bistellist SET employee=?,employeeenglish=?,department=?,team=?,email=? WHERE Num=?",[employee,employeeenglish,department,team,email,key], function(err,rows){
     if(err) throw err;
     res.send(rows);
+  });
+});
+
+router.post('/add', function(req, res){
+  console.log('백엔드 add에서 동작하나?');
+  const Num=req.body.add_Num;
+  const Name=req.body.add_Name;
+  const dep=req.body.add_dep;
+  const team=req.body.add_team;
+  const email=req.body.add_email;
+  const Eng=req.body.add_Eng;
+  connection.query("INSERT INTO bistellist values(?,?,?,?,?,?)",
+  [Num,Name,Eng,dep,team,email], function(err,rows){
+  if(err) throw err;
+  res.send(rows);
+  });
+});
+
+router.post('/del', function(req, res){
+  console.log('백엔드 del에서 동작하나?');
+  // let Num=req.body.del_Num;
+  var Name=req.body.del_Name;
+  console.log(Name);
+  console.log('삭제가 안되나?');
+  // const dep=req.body.del_Eng;
+  // const team=req.body.del_dep;
+  // const email=req.body.del_team;
+  // const Eng=req.body.del_email;
+  connection.query("DELETE FROM bistellist WHERE Num = ?",
+  Name, function(err,rows){
+  if(err) throw err;
+  res.send(rows);
   });
 });
 
