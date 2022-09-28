@@ -9,7 +9,6 @@
         <button class="seatch-btn" type="submit" @click="edit">수정</button>
         <button class="seatch-btn" type="submit" @click="add">추가</button>
     </div>
-
     <div class="table_wrap" v-show="guard_down">
       <table class="list">
         <thead>
@@ -52,7 +51,6 @@
         </thead>
       </table>
     </div>
-
     <div class="table_wrap" v-show="guard_add">
       <table class="list">
         <thead>
@@ -74,19 +72,6 @@
         </thead>
       </table>
     </div>
-
-    <!-- <div class="table_wrap" v-show="guard">
-      <table class="list">
-        <tr v-for="(tbl) in change_tbl" :key="tbl.Num">
-            <td col-index = 1>{{tbl.Num}}</td>
-            <td col-index = 2><input class="search-txt" type="text" placeholder="검색어 입력" v-model="Name"/></td>
-            <td col-index = 3><input class="search-txt" type="text" placeholder="검색어 입력" v-model="searchkeyword"/></td>
-            <td col-index = 4><input class="search-txt" type="text" placeholder="검색어 입력" v-model="searchkeyword"/></td>
-            <td col-index = 5><input class="search-txt" type="text" placeholder="검색어 입력" v-model="searchkeyword"/></td>
-            <td col-index = 6><input class="search-txt" type="text" placeholder="검색어 입력" v-model="searchkeyword"/></td>
-        </tr>
-      </table>
-    </div> -->
   </header>
 </template>
 
@@ -137,7 +122,7 @@ export default {
         url: 'http://localhost:3000/users/del',
         method: 'POST',
         data: {
-          del_Name: this.die
+          del_Num: this.die
         }
       })
     },

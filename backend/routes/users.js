@@ -63,7 +63,8 @@ router.post('/u', function(req, res){
   var team=updatedlist.map(row=>row.team);
   var email=updatedlist.map(row=>row.email);
   console.log(email);
-  connection.query("UPDATE bistellist SET employee=?,employeeenglish=?,department=?,team=?,email=? WHERE Num=?",[employee,employeeenglish,department,team,email,key], function(err,rows){
+  connection.query("UPDATE bistellist SET employee=?,employeeenglish=?,department=?,team=?,email=? WHERE Num=?",
+  [employee,employeeenglish,department,team,email,key], function(err,rows){
     if(err) throw err;
     res.send(rows);
   });
@@ -86,16 +87,9 @@ router.post('/add', function(req, res){
 
 router.post('/del', function(req, res){
   console.log('백엔드 del에서 동작하나?');
-  // let Num=req.body.del_Num;
-  var Name=req.body.del_Name;
-  console.log(Name);
-  console.log('삭제가 안되나?');
-  // const dep=req.body.del_Eng;
-  // const team=req.body.del_dep;
-  // const email=req.body.del_team;
-  // const Eng=req.body.del_email;
+  var Num=req.body.del_Num;
   connection.query("DELETE FROM bistellist WHERE Num = ?",
-  Name, function(err,rows){
+  Num, function(err,rows){
   if(err) throw err;
   res.send(rows);
   });
