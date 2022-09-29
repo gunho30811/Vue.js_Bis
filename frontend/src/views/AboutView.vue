@@ -1,15 +1,15 @@
 <template>
-  <div class="about">
-    <Header />
+  <div class="Search">
+    <Search />
   </div>
 </template>
 
 <script>
-import Header from '@/components/HeaderGun.vue'
+import Search from '@/components/SearchBis.vue'
 export default {
-  name: 'AboutView',
+  name: 'SearchBis',
   components: {
-    Header
+    Search
   }
 }
 

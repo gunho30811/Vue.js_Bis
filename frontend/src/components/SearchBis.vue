@@ -216,14 +216,19 @@ th{
 .table_wrap{
   width: 80%;
   margin:auto;
-  margin-top:1vh;
+  margin-top:3vh;
   overflow-y: scroll;
   height: fit-content;
-  max-height: 70vh;
+  max-height: 80vh;
 }
 
 .search-txt{
   padding:0;
   width: fit-content;
+}
+.search-box{
+  float:left;
+  text-align: left;
+  padding-left: 16vw;
 }
 </style>
