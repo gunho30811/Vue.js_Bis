@@ -5,13 +5,12 @@
           src="https://static.wixstatic.com/media/8b43f7_af678fecc303439e8df0c7b343e9054f~mv2.png/v1/fill/w_299,h_50,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/BISTelligence_Logo_EN_w600px.png"></a>
     </h1>
     <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/Search">About</router-link>
+      <router-link to="/">메인</router-link> |
+      <router-link to="/Search">직원 관리</router-link>
     </nav>
   </header>
   <router-view />
 </template>
-
 <style>
 body{margin:0}
 #app {
