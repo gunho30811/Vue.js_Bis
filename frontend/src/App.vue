@@ -8,6 +8,7 @@
       <router-link to="/">메인</router-link> |
       <router-link to="/Search">직원 관리</router-link>
     </nav>
+    <h2></h2>
   </header>
   <router-view />
 </template>
@@ -38,6 +39,15 @@ h1{
   padding:15px;
   text-align: left;
 }
+
+h2{
+  background-color: #42b983;
+  float:left;
+  margin-top:-10px;
+  height: 20px;
+  width: 100%;
+}
+
 nav a {
   font-weight: bold;
   color: #2c3e50;

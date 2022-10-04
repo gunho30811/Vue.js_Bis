@@ -219,7 +219,7 @@ th{
   margin-top:3vh;
   overflow-y: scroll;
   height: fit-content;
-  max-height: 80vh;
+  max-height: 70vh;
 }
 
 .search-txt{
