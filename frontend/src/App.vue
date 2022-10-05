@@ -1,5 +1,5 @@
 <template>
-  <!-- <header>
+  <header>
     <h1 id="logo">
       <a href="index.html"><img
           src="https://static.wixstatic.com/media/8b43f7_af678fecc303439e8df0c7b343e9054f~mv2.png/v1/fill/w_299,h_50,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/BISTelligence_Logo_EN_w600px.png"></a>
@@ -10,20 +10,7 @@
     </nav>
     <h2></h2>
   </header>
-  <router-view /> -->
-
-<div id="q-app" style="min-height: 100vh;">
-  <div class="q-pa-md q-gutter-sm">
-    <q-btn style="width:100px;height:100px;" color="white" text-color="black" label="Standard"></q-btn>
-    <q-btn color="primary" label="Primary"></q-btn>
-    <q-btn color="secondary" label="Secondary"></q-btn>
-    <q-btn color="amber" glossy label="Amber"></q-btn>
-    <q-btn color="brown-5" label="Brown 5"></q-btn>
-    <q-btn color="deep-orange" glossy label="Deep Orange"></q-btn>
-    <q-btn color="purple" label="Purple"></q-btn>
-    <q-btn color="black" label="Black"></q-btn>
-  </div>
-</div>
+  <router-view />
 </template>
 <style>
 body{margin:0}
