@@ -1,6 +1,8 @@
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
-  transpileDependencies: true,
+  transpileDependencies: [
+    'quasar'
+  ],
 
   devServer: {
     proxy: {
@@ -8,14 +10,20 @@ module.exports = defineConfig({
       '/api': {
         target: 'http://localhost:3000/api',
         changeOrigin: true,
-        pathRewrite: { 
+        pathRewrite: {
           '^/api': ''
-        } 
+        }
       }
 
     }
   },
 
-  outputDir: '../backend/public'
+  outputDir: '../backend/public',
 
+  pluginOptions: {
+    quasar: {
+      importStrategy: 'kebab',
+      rtlSupport: true
+    }
+  }
 })
