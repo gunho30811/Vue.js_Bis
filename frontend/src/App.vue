@@ -1,59 +1,101 @@
 <template>
-  <header>
-    <h1 id="logo">
-      <a href="index.html"><img
-          src="https://static.wixstatic.com/media/8b43f7_af678fecc303439e8df0c7b343e9054f~mv2.png/v1/fill/w_299,h_50,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/BISTelligence_Logo_EN_w600px.png"></a>
-    </h1>
-    <nav>
-      <router-link to="/">메인</router-link> |
-      <router-link to="/Search">직원 관리</router-link>
-    </nav>
-    <h2></h2>
-  </header>
-  <router-view />
+  <q-layout view="lHh Lpr lFf">
+    <q-header elevated class="glossy">
+      <q-toolbar>
+        <q-btn
+          flat
+          dense
+          round
+          @click="leftDrawerOpen = !leftDrawerOpen"
+          aria-label="Menu"
+          icon="menu"
+        />
+
+        <q-toolbar-title>
+          Quasar App
+        </q-toolbar-title>
+
+        <div>Quasar v{{ $q.version }}</div>
+      </q-toolbar>
+    </q-header>
+
+    <q-drawer
+      v-model="leftDrawerOpen"
+      show-if-above
+      bordered
+      class="bg-grey-2"
+    >
+      <q-list>
+        <q-item-label header>Essential Links</q-item-label>
+        <q-item clickable tag="a" target="_blank" href="https://quasar.dev">
+          <q-item-section avatar>
+            <q-icon name="school" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Docs</q-item-label>
+            <q-item-label caption>quasar.dev</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item clickable tag="a" target="_blank" href="https://github.com/quasarframework/">
+          <q-item-section avatar>
+            <q-icon name="code" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Github</q-item-label>
+            <q-item-label caption>github.com/quasarframework</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item clickable tag="a" target="_blank" href="https://chat.quasar.dev">
+          <q-item-section avatar>
+            <q-icon name="chat" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Discord Chat Channel</q-item-label>
+            <q-item-label caption>chat.quasar.dev</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item clickable tag="a" target="_blank" href="https://forum.quasar.dev">
+          <q-item-section avatar>
+            <q-icon name="forum" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Forum</q-item-label>
+            <q-item-label caption>forum.quasar.dev</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item clickable tag="a" target="_blank" href="https://twitter.com/quasarframework">
+          <q-item-section avatar>
+            <q-icon name="rss_feed" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Twitter</q-item-label>
+            <q-item-label caption>@quasarframework</q-item-label>
+          </q-item-section>
+        </q-item>
+      </q-list>
+    </q-drawer>
+
+    <q-page-container>
+      <HelloWorld />
+    </q-page-container>
+  </q-layout>
 </template>
-<style>
-body{margin:0}
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-header{
-    background: white;
-    width: 100%;
-}
-nav {
-  width: 30%;
-  height: 5vh;
-  padding: 30px;
-  text-align: right;
-  float:right;
-}
-h1{
-  margin:0;
-  width: calc(70% - 90px);
-  float:left;
-  padding:15px;
-  text-align: left;
-}
 
-h2{
-  background-color: #42b983;
-  float:left;
-  margin-top:-10px;
-  height: 20px;
-  width: 100%;
-}
+<script>
+import { ref } from 'vue'
+import HelloWorld from './components/HelloWorld.vue'
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+export default {
+  name: 'LayoutDefault',
 
-nav a.router-link-exact-active {
-  color: #42b983;
+  components: {
+    HelloWorld
+  },
+
+  setup () {
+    return {
+      leftDrawerOpen: ref(false)
+    }
+  }
 }
-</style>
+</script>

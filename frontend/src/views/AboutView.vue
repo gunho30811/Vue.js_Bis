@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="Search">
     <Search />
   </div>
@@ -13,4 +13,4 @@ export default {
   }
 }
 
-</script>
+</script> -->
