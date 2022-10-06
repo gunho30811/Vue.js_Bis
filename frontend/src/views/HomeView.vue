@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <div class="home">
     아 헬로우 안쓰네 ㅋㅋ;
     <Login />
@@ -13,4 +13,4 @@ export default {
     Login
   }
 }
-</script> -->
+</script>
